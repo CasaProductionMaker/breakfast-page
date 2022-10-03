@@ -55,6 +55,18 @@
   .Container {
     height: 185px;
   }
+  h1{
+    font-size: 100px;
+  }
+  h2{
+    font-size: 60px;
+  }
+  h3{
+    font-size: 50px;
+  }
+  p{
+    font-size: 20px;
+  }
 }
 
 /********** Medium devices only **********/
@@ -101,6 +113,18 @@
   }
   .Container {
     height: 170px;
+  }
+  h1{
+    font-size: 60px;
+  }
+  h2{
+    font-size: 40px;
+  }
+  h3{
+    font-size: 30px;
+  }
+  p{
+    font-size: 15px;
   }
 }
 @media (max-width: 767px) {

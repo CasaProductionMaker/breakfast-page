@@ -6,7 +6,17 @@ h1{
 	color: blue;
 	margin: 8px;
 }
+h2{
+	text-align: center;
+	color: blue;
+	margin: 6px;
+}
 h3{
+	text-align: center;
+	color: blue;
+	margin: 5px;
+}
+p{
 	text-align: center;
 	color: blue;
 	margin: 5px;
@@ -31,7 +41,7 @@ img {
 	padding: 10px;
 	text-decoration: none;
 	font-weight: bold;
-	font-family: monospace;
+	font-family: "copperplate";
 	font-size: 20px;
 	background-color: #477890;
 	transition: color 0.5s, background-color 0.5s;
