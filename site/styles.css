@@ -36,6 +36,24 @@ img {
 	text-align: center;
 	display: block;
 }
+.container{
+	width:  100%;
+	height: 100vh;
+	background: lightblue;
+	display: block;
+	align-items: center;
+	justify-content: center;
+}
+form{
+	text-align: center;
+	background: white;
+	display: flex;
+	flex-direction: column;
+	padding: 2vw 4vw;
+	width: 90%;
+	max-width: 600px;
+	border-radius: 10px;
+}
 .TopBar {
 	color: #143642;
 	padding: 10px;

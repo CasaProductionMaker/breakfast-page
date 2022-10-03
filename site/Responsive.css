@@ -52,9 +52,6 @@
   .col-lg-12 {
     width: 100%;
   }
-  .Container {
-    height: 185px;
-  }
   h1{
     font-size: 100px;
   }
@@ -110,9 +107,6 @@
   }
   .col-md-12 {
     width: 100%;
-  }
-  .Container {
-    height: 170px;
   }
   h1{
     font-size: 60px;
@@ -216,8 +210,5 @@
   }
   .col-xs-12 {
     width: 100%;
-  }
-  .Container {
-    height: 150px;
   }
 }
