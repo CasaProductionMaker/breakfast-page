@@ -13,20 +13,19 @@
 		<div class="container">
 			<form onsubmit="sendEmail(); reset(); return false;">
 				<h3>BE GOD</h3>
-				<input type="text" id="name" placeholder="You Name" required>
 				<input type="email" id="email" placeholder="Email ID" required>
-				<input type="text" id="phone" placeholder="Phone Number" required>
-				<textarea id="message" rows="4" placeholder="How can I help"></textarea>
+				<textarea id="message" rows="1" placeholder="Order"></textarea>
 				<button type="Submit">Send</button>
 			</form>
 		</div>
-		<div class="align-center">
+		<div class="align-center order">
 			<h3>Egg Pie</h3>
 			<input type="checkbox" id="salt" name="salt" value="Salt">
 			<label for="salt"> Salt</label><br>
 			<input type="checkbox" id="pepper" name="pepper" value="Pepper">
 			<label for="pepper"> Pepper</label>
 		</div>
+		<a href="mailto:andre.yong@outlook.com?subject=Order&body=test">Mail</a>
 		<script src="https://smtpjs.com/v3/smtp.js"></script>
 		<script src="Orders.js"></script>
 	</body>
