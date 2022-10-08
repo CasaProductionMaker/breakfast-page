@@ -1,4 +1,5 @@
 const stuff = [];
+const ids = [];
 storage = window.localStorage;
 function SendE()
 {
@@ -11,9 +12,9 @@ function AddItem(item, special)
 	const div = document.createElement("div");
 	if(special == "1")
 	{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><datalist><option><option><option><option></datalist> ";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><button>Remove</button>";
 	}else{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><button>Remove</button>";
 	}
 	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
@@ -75,49 +76,18 @@ function AddItem(item, special)
 		{
 			nodeList[i].innerHTML = item;
 		}
-		if(special == "1")
+		if(nodeList[i].tagName == "BUTTON")
 		{
-			if(nodeList[i].tagName == "DATALIST")
-			{
-				const att10 = document.createAttribute("id");
-				att10.value = "Options";
-				nodeList[i].setAttributeNode(att10);
-				const nodeList2 = nodeList[i].children;
-				options++;
-				if(options == 1)
-				{
-					const att1 = document.createAttribute("value");
-					att1.value = "Fried Egg";
-					nodeList2[0].setAttributeNode(att1);
-				}
-				options++;
-				if(options == 2)
-				{
-					const att1 = document.createAttribute("value");
-					att1.value = "Sunny Side Up";
-					nodeList2[1].setAttributeNode(att1);
-				}
-				options++;
-				if(options == 3)
-				{
-					const att1 = document.createAttribute("value");
-					att1.value = "Scrambled Egg";
-					nodeList2[2].setAttributeNode(att1);
-				}
-				options++;
-				if(options == 4)
-				{
-					const att1 = document.createAttribute("value");
-					att1.value = "Hard Boiled Egg";
-					nodeList2[3].setAttributeNode(att1);
-				}
-			}
+			const att1 = document.createAttribute("for");
+			att1.value = "Remove()";
+			nodeList[i].setAttributeNode(att1);
 		}
 	}
 	stuff.push(item);
 }
 function Update()
 {
+	stuff.length = 0;
 	document.getElementById("orderdiv").innerHTML = "";
 	if(localStorage.getItem("Fried") == "x")
 	{
@@ -165,34 +135,19 @@ function EncodeStuff()
 		{
 			encoded += "100"+"/";
 			//localStorage.setItem("Fried", "1"+document.querySelector("#salt"+"").checked+document.querySelector("#pepper"+"").checked);
-		}else{
-			encoded += "000"+"/";
-		}
-		if("Hard" == item)
+		}else if("Hard" == item)
 		{
 			encoded += "100"+"/";
-		}else{
-			encoded += "000"+"/";
-		}
-		if("Scrambled" == item)
+		}else if("Scrambled" == item)
 		{
 			encoded += "100"+"/";
-		}else{
-			encoded += "000"+"/";
-		}
-		if("Sunny" == item)
+		}else if("Sunny" == item)
 		{
 			encoded += "100"+"/";
-		}else{
-			encoded += "000"+"/";
-		}
-		if("Pie" == item)
+		}else if("Pie" == item)
 		{
 			encoded += "100"+"/";
-		}else{
-			encoded += "000"+"/";
-		}
-		if("Omlette" == item)
+		}else if("Omlette" == item)
 		{
 			encoded += "100"+"/";
 		}else{
