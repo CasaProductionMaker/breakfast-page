@@ -1,14 +1,18 @@
 const stuff = [];
+storage = window.localStorage;
 function SendE()
 {
 	var emailAddress = "andre.yong@outlook.com";
-	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
+	var subjectbody = "?subject=New Order&body=";
+	var bodyorder = "Hi i am a god";
+	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress + subjectbody + bodyorders); 
 }
 function AddItem(item)
 {
+	let rand = Math.floor((Math.random() * 100000000000000000000000) + 1);
 	const div = document.createElement("div");
 	div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
-	const element = document.body.appendChild(div);
+	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
 	element.classList.add("align-center");
 	element.classList.add("order");
@@ -25,7 +29,7 @@ function AddItem(item)
 			if(inputs == 1)
 			{
 				const att1 = document.createAttribute("id");
-				att1.value = "salt";
+				att1.value = "salt" + rand.toString();
 				nodeList[i].setAttributeNode(att1);
 				const att2 = document.createAttribute("name");
 				att2.value = "salt";
@@ -37,7 +41,7 @@ function AddItem(item)
 			if(inputs == 2)
 			{
 				const att1 = document.createAttribute("id");
-				att1.value = "pepper";
+				att1.value = "pepper" + rand.toString();
 				nodeList[i].setAttributeNode(att1);
 				const att2 = document.createAttribute("name");
 				att2.value = "pepper";
@@ -53,13 +57,13 @@ function AddItem(item)
 			if(labels == 1)
 			{
 				const att1 = document.createAttribute("for");
-				att1.value = "salt";
+				att1.value = "salt" + rand.toString();
 				nodeList[i].setAttributeNode(att1);
 			}
 			if(labels == 2)
 			{
 				const att1 = document.createAttribute("for");
-				att1.value = "pepper";
+				att1.value = "pepper" + rand.toString();
 				nodeList[i].setAttributeNode(att1);
 			}
 		}
@@ -68,5 +72,14 @@ function AddItem(item)
 			nodeList[i].innerHTML = item;
 		}
 	}
-	stuff.push(element);
+	localStorage.setItem("recent", item);
+	stuff.push(item);
+}
+function Update()
+{
+	document.getElementById("orderdiv").innerHTML = "";
+	stuff.forEach(Add);
+	function Add(value, index, array) {
+		AddItem(value);
+	}
 }
