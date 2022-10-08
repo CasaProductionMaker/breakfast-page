@@ -16,6 +16,9 @@ h3{
 	color: blue;
 	margin: 5px;
 }
+datalist{
+	float: left;
+}
 p{
 	text-align: center;
 	color: blue;

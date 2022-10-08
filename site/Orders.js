@@ -2,16 +2,19 @@ const stuff = [];
 storage = window.localStorage;
 function SendE()
 {
-	var emailAddress = "andre.yong@outlook.com";
-	var subjectbody = "?subject=New Order&body=";
-	var bodyorder = EncodeStuff();
-	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress + subjectbody + bodyorders); 
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff;
+	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
-function AddItem(item)
+function AddItem(item, special)
 {
 	let rand = Math.floor((Math.random() * 100000000000000000000000) + 1);
 	const div = document.createElement("div");
-	div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
+	if(special == "1")
+	{
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><datalist><option><option><option><option></datalist> ";
+	}else{
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
+	}
 	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
 	element.classList.add("align-center");
@@ -19,6 +22,7 @@ function AddItem(item)
 	const nodeList = element.children;
 	let inputs = 0;
 	let labels = 0;
+	let options = 0;
 	for (let i = 0; i < nodeList.length; i++) {
 		if(nodeList[i].tagName == "INPUT")
 		{
@@ -71,6 +75,44 @@ function AddItem(item)
 		{
 			nodeList[i].innerHTML = item;
 		}
+		if(special == "1")
+		{
+			if(nodeList[i].tagName == "DATALIST")
+			{
+				const att10 = document.createAttribute("id");
+				att10.value = "Options";
+				nodeList[i].setAttributeNode(att10);
+				const nodeList2 = nodeList[i].children;
+				options++;
+				if(options == 1)
+				{
+					const att1 = document.createAttribute("value");
+					att1.value = "Fried Egg";
+					nodeList2[0].setAttributeNode(att1);
+				}
+				options++;
+				if(options == 2)
+				{
+					const att1 = document.createAttribute("value");
+					att1.value = "Sunny Side Up";
+					nodeList2[1].setAttributeNode(att1);
+				}
+				options++;
+				if(options == 3)
+				{
+					const att1 = document.createAttribute("value");
+					att1.value = "Scrambled Egg";
+					nodeList2[2].setAttributeNode(att1);
+				}
+				options++;
+				if(options == 4)
+				{
+					const att1 = document.createAttribute("value");
+					att1.value = "Hard Boiled Egg";
+					nodeList2[3].setAttributeNode(att1);
+				}
+			}
+		}
 	}
 	stuff.push(item);
 }
@@ -103,7 +145,12 @@ function Update()
 	}
 	stuff.forEach(Add);
 	function Add(value, index, array) {
-		AddItem(value);
+		if(value == "Egg Pie" || value == "Egg Omlette")
+		{
+			AddItem(value, "1");
+		}else{
+			AddItem(value, "0");
+		}
 	}
 }
 Update();
