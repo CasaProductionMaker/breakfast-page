@@ -10,8 +10,11 @@
 	<body>
 		<div class="TopHolder"><a href="index.html" class="TopBar">Home</a><a href="my-order.html" class="TopBar">My Order</a><div class="dropdown"><button class="TopBar DropDown">Eggs</button><div class="DropDownContent"><a href="special-eggs.html">Specials</a><a href="classic-eggs.html">Classic</a></div></div></div>
 		<h1>My Order</h1>
-		<a href="#" class="email-link" id="submitorder" onclick="SendE()">Submit Order</a>
-		<button onclick="Update()">Update</button>
+		<div class="align-center">
+			<a href="#" class="email-link" id="submitorder" onclick="SendE()">Submit Order</a><br>
+			<button onclick="Update()">Update</button><br>
+			<button onclick="Clear()">Clear</button>
+		</div>
 		<div id="orderdiv"></div>
 		<script src="Orders.js"></script>
 	</body>

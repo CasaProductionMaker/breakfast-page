@@ -3,7 +3,7 @@ const ids = [];
 storage = window.localStorage;
 function SendE()
 {
-	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + EncodeStuff();
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+ids;
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
 function AddItem(item, special)
@@ -12,9 +12,9 @@ function AddItem(item, special)
 	const div = document.createElement("div");
 	if(special == "1")
 	{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><button>Remove</button>";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br>";
 	}else{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><button>Remove</button>";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br>";
 	}
 	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
@@ -76,18 +76,14 @@ function AddItem(item, special)
 		{
 			nodeList[i].innerHTML = item;
 		}
-		if(nodeList[i].tagName == "BUTTON")
-		{
-			const att1 = document.createAttribute("for");
-			att1.value = "Remove()";
-			nodeList[i].setAttributeNode(att1);
-		}
 	}
+	ids.push(rand);
 	stuff.push(item);
 }
 function Update()
 {
 	stuff.length = 0;
+	ids.length = 0;
 	document.getElementById("orderdiv").innerHTML = "";
 	if(localStorage.getItem("Fried") == "x")
 	{
@@ -130,29 +126,37 @@ function EncodeStuff()
 	let encoded = "";
 	stuff.forEach(enc);
 	function enc(value, index, array) {
-		let item = value;
-		if("Fried" == item)
+		if("Fried" == value)
 		{
-			encoded += "100"+"/";
-			//localStorage.setItem("Fried", "1"+document.querySelector("#salt"+"").checked+document.querySelector("#pepper"+"").checked);
-		}else if("Hard" == item)
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
+		}else if("Hard" == value)
 		{
-			encoded += "100"+"/";
-		}else if("Scrambled" == item)
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
+		}else if("Scrambled" == value)
 		{
-			encoded += "100"+"/";
-		}else if("Sunny" == item)
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
+		}else if("Sunny" == value)
 		{
-			encoded += "100"+"/";
-		}else if("Pie" == item)
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
+		}else if("Pie" == value)
 		{
-			encoded += "100"+"/";
-		}else if("Omlette" == item)
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
+		}else if("Omlette" == value)
 		{
-			encoded += "100"+"/";
+			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
 		}else{
 			encoded += "000"+"/";
 		}
 	}
 	return encoded;
+}
+function Clear()
+{
+	localStorage.setItem("Fried", "");
+	localStorage.setItem("Hard", "");
+	localStorage.setItem("Scrambled", "");
+	localStorage.setItem("Sunny", "");
+	localStorage.setItem("Pie", "");
+	localStorage.setItem("Omlette", "");
+	Update();
 }
