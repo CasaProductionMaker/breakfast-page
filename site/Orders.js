@@ -3,7 +3,7 @@ const ids = [];
 storage = window.localStorage;
 function SendE()
 {
-	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+ids;
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+EncodeStuff();
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
 function AddItem(item, special)
@@ -12,14 +12,17 @@ function AddItem(item, special)
 	const div = document.createElement("div");
 	if(special == "1")
 	{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br>";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><input><label> Fried Egg</label><br><input><label> Hard Boiled Egg</label><br><input><label> Sunny Side Up</label><br><input><label> Scrambled Egg</label>";
 	}else{
-		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br>";
+		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
 	}
 	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
 	element.classList.add("align-center");
 	element.classList.add("order");
+	const att100 = document.createAttribute("id");
+	att100.value = "order" + rand.toString();
+	element.setAttributeNode(att100);
 	const nodeList = element.children;
 	let inputs = 0;
 	let labels = 0;
@@ -55,6 +58,57 @@ function AddItem(item, special)
 				att3.value = "Pepper";
 				nodeList[i].setAttributeNode(att3);
 			}
+			if(special == "1")
+			{
+				if(inputs == 3)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "fried" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "fried";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "FriedEgg";
+					nodeList[i].setAttributeNode(att3);
+				}
+				if(inputs == 4)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "hard" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "hard";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "HardEgg";
+					nodeList[i].setAttributeNode(att3);
+				}
+				if(inputs == 5)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "sunny" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "frisunnyed";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "SunnyEgg";
+					nodeList[i].setAttributeNode(att3);
+				}
+				if(inputs == 6)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "scrambled" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "scrambled";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "ScrambledEgg";
+					nodeList[i].setAttributeNode(att3);
+				}
+			}
 		}
 		if(nodeList[i].tagName == "LABEL")
 		{
@@ -70,6 +124,33 @@ function AddItem(item, special)
 				const att1 = document.createAttribute("for");
 				att1.value = "pepper" + rand.toString();
 				nodeList[i].setAttributeNode(att1);
+			}
+			if(special == "1")
+			{
+				if(inputs == 3)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "fried" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+				if(inputs == 4)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "hard" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+				if(inputs == 5)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "sunny" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+				if(inputs == 6)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "scrambled" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
 			}
 		}
 		if(nodeList[i].tagName == "H3")
@@ -124,29 +205,17 @@ Update();
 function EncodeStuff()
 {
 	let encoded = "";
-	stuff.forEach(enc);
+	ids.forEach(enc);
 	function enc(value, index, array) {
-		if("Fried" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else if("Hard" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else if("Scrambled" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else if("Sunny" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else if("Pie" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else if("Omlette" == value)
-		{
-			encoded += "1"+document.querySelector("#salt"+ids[index]).checked+document.querySelector("#pepper"+ids[index]).checked+"/";
-		}else{
-			encoded += "000"+"/";
+		const fc = document.getElementById("orderdiv").children[index];
+		let children = fc.children;
+		for (let i = 0; i < children.length; i++) {
+			if(children[i].tagName == "INPUT")
+			{
+				encoded += children[i].checked;
+			}
 		}
+		encoded += "/";
 	}
 	return encoded;
 }
