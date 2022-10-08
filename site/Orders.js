@@ -2,7 +2,7 @@ const stuff = [];
 storage = window.localStorage;
 function SendE()
 {
-	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff;
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + EncodeStuff();
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
 function AddItem(item, special)
