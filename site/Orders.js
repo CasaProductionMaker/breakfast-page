@@ -4,7 +4,7 @@ function SendE()
 {
 	var emailAddress = "andre.yong@outlook.com";
 	var subjectbody = "?subject=New Order&body=";
-	var bodyorder = "Hi i am a god";
+	var bodyorder = EncodeStuff();
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress + subjectbody + bodyorders); 
 }
 function AddItem(item)
@@ -72,14 +72,85 @@ function AddItem(item)
 			nodeList[i].innerHTML = item;
 		}
 	}
-	localStorage.setItem("recent", item);
 	stuff.push(item);
 }
 function Update()
 {
 	document.getElementById("orderdiv").innerHTML = "";
+	if(localStorage.getItem("Fried") == "x")
+	{
+		stuff.push("Fried Egg");
+	}
+	if(localStorage.getItem("Hard") == "x")
+	{
+		stuff.push("Hard Boiled Egg");
+	}
+	if(localStorage.getItem("Scrambled") == "x")
+	{
+		stuff.push("Scrambled Egg");
+	}
+	if(localStorage.getItem("Sunny") == "x")
+	{
+		stuff.push("Sunny Side Up");
+	}
+	if(localStorage.getItem("Pie") == "x")
+	{
+		stuff.push("Egg Pie");
+	}
+	if(localStorage.getItem("Omlette") == "x")
+	{
+		stuff.push("Egg Omlette");
+	}
 	stuff.forEach(Add);
 	function Add(value, index, array) {
 		AddItem(value);
 	}
+}
+Update();
+//document.querySelector('.messageCheckbox').checked;
+function EncodeStuff()
+{
+	let encoded = "";
+	stuff.forEach(enc);
+	function enc(value, index, array) {
+		let item = value;
+		if("Fried" == item)
+		{
+			encoded += "100"+"/";
+			//localStorage.setItem("Fried", "1"+document.querySelector("#salt"+"").checked+document.querySelector("#pepper"+"").checked);
+		}else{
+			encoded += "000"+"/";
+		}
+		if("Hard" == item)
+		{
+			encoded += "100"+"/";
+		}else{
+			encoded += "000"+"/";
+		}
+		if("Scrambled" == item)
+		{
+			encoded += "100"+"/";
+		}else{
+			encoded += "000"+"/";
+		}
+		if("Sunny" == item)
+		{
+			encoded += "100"+"/";
+		}else{
+			encoded += "000"+"/";
+		}
+		if("Pie" == item)
+		{
+			encoded += "100"+"/";
+		}else{
+			encoded += "000"+"/";
+		}
+		if("Omlette" == item)
+		{
+			encoded += "100"+"/";
+		}else{
+			encoded += "000"+"/";
+		}
+	}
+	return encoded;
 }
