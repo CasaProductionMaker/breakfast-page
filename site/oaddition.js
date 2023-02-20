@@ -24,6 +24,14 @@ function Add(item) {
 	{
 		localStorage.setItem("Omlette", "x");
 	}
+	if("GGYog" == item)
+	{
+		localStorage.setItem("GGYog", "x");
+	}
+	if("OKYog" == item)
+	{
+		localStorage.setItem("OKYog", "x");
+	}
 }
 //localStorage.setItem("Fried", "");
 //localStorage.setItem("Hard", "");

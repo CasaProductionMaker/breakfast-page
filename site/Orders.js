@@ -6,15 +6,17 @@ function SendE()
 	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+EncodeStuff();
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
-function AddItem(item, special)
+function AddItem(item, special, yog)
 {
 	let rand = Math.floor((Math.random() * 100000000000000000000000) + 1);
 	const div = document.createElement("div");
 	if(special == "1")
 	{
 		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label><br><input><label> Fried Egg</label><br><input><label> Hard Boiled Egg</label><br><input><label> Sunny Side Up</label><br><input><label> Scrambled Egg</label>";
-	}else{
+	}else if(special == "0" && yog == "0"){
 		div.innerHTML = "<h3></h3><input><label> Salt</label><br><input><label> Pepper</label>";
+	}else if(yog == "1"){
+		div.innerHTML = "<h3></h3><input><label> Cinnamon</label><br><input><label> Cereal on the side</label>";
 	}
 	const element = document.getElementById("orderdiv").appendChild(div);
 	console.log(element);
@@ -34,29 +36,57 @@ function AddItem(item, special)
 			att.value = "checkbox";
 			nodeList[i].setAttributeNode(att);
 			inputs++;
-			if(inputs == 1)
+			if(yog == "0")
 			{
-				const att1 = document.createAttribute("id");
-				att1.value = "salt" + rand.toString();
-				nodeList[i].setAttributeNode(att1);
-				const att2 = document.createAttribute("name");
-				att2.value = "salt";
-				nodeList[i].setAttributeNode(att2);
-				const att3 = document.createAttribute("value");
-				att3.value = "Salt";
-				nodeList[i].setAttributeNode(att3);
-			}
-			if(inputs == 2)
-			{
-				const att1 = document.createAttribute("id");
-				att1.value = "pepper" + rand.toString();
-				nodeList[i].setAttributeNode(att1);
-				const att2 = document.createAttribute("name");
-				att2.value = "pepper";
-				nodeList[i].setAttributeNode(att2);
-				const att3 = document.createAttribute("value");
-				att3.value = "Pepper";
-				nodeList[i].setAttributeNode(att3);
+				if(inputs == 1)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "salt" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "salt";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "Salt";
+					nodeList[i].setAttributeNode(att3);
+				}
+				if(inputs == 2)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "pepper" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "pepper";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "Pepper";
+					nodeList[i].setAttributeNode(att3);
+				}
+			}else if(yog == "1"){
+				if(inputs == 1)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "cin" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "cin";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "Cinnamon";
+					nodeList[i].setAttributeNode(att3);
+				}
+				if(inputs == 2)
+				{
+					const att1 = document.createAttribute("id");
+					att1.value = "cer" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+					const att2 = document.createAttribute("name");
+					att2.value = "cer";
+					nodeList[i].setAttributeNode(att2);
+					const att3 = document.createAttribute("value");
+					att3.value = "Cereal";
+					nodeList[i].setAttributeNode(att3);
+				}
 			}
 			if(special == "1")
 			{
@@ -113,17 +143,33 @@ function AddItem(item, special)
 		if(nodeList[i].tagName == "LABEL")
 		{
 			labels++;
-			if(labels == 1)
+			if(yog == "0")
 			{
-				const att1 = document.createAttribute("for");
-				att1.value = "salt" + rand.toString();
-				nodeList[i].setAttributeNode(att1);
-			}
-			if(labels == 2)
-			{
-				const att1 = document.createAttribute("for");
-				att1.value = "pepper" + rand.toString();
-				nodeList[i].setAttributeNode(att1);
+				if(labels == 1)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "salt" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+				if(labels == 2)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "pepper" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+			}else if(yog == "1"){
+				if(labels == 1)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "cin" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
+				if(labels == 2)
+				{
+					const att1 = document.createAttribute("for");
+					att1.value = "cer" + rand.toString();
+					nodeList[i].setAttributeNode(att1);
+				}
 			}
 			if(special == "1")
 			{
@@ -190,13 +236,23 @@ function Update()
 	{
 		stuff.push("Egg Omlette");
 	}
+	if(localStorage.getItem("GGYog") == "x")
+	{
+		stuff.push("Greek Gods Yogurt");
+	}
+	if(localStorage.getItem("OKYog") == "x")
+	{
+		stuff.push("Organic Kefir Yogurt");
+	}
 	stuff.forEach(Add);
 	function Add(value, index, array) {
 		if(value == "Egg Pie" || value == "Egg Omlette")
 		{
-			AddItem(value, "1");
+			AddItem(value, "1", "0");
+		}else if(value == "Organic Kefir Yogurt" || value == "Greek Gods Yogurt"){
+			AddItem(value, "0", "1");
 		}else{
-			AddItem(value, "0");
+			AddItem(value, "0", "0");
 		}
 	}
 }
@@ -227,5 +283,7 @@ function Clear()
 	localStorage.setItem("Sunny", "");
 	localStorage.setItem("Pie", "");
 	localStorage.setItem("Omlette", "");
+	localStorage.setItem("GGYog", "");
+	localStorage.setItem("OKYog", "");
 	Update();
 }
