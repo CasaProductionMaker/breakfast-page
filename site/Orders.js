@@ -4,7 +4,7 @@ storage = window.localStorage;
 function SendE()
 {
 	name = document.getElementById("name").value;
-	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+EncodeStuff()+name;
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+" values:"+EncodeStuff()+name;
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
 function AddItem(item, special, yog)
@@ -269,7 +269,7 @@ function EncodeStuff()
 		for (let i = 0; i < children.length; i++) {
 			if(children[i].tagName == "INPUT")
 			{
-				encoded += children[i].checked;
+				encoded += children[i].checked + " ";
 			}
 		}
 		encoded += "/";
