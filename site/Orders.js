@@ -3,7 +3,8 @@ const ids = [];
 storage = window.localStorage;
 function SendE()
 {
-	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+EncodeStuff();
+	name = document.getElementById("name").value;
+	var emailAddress = "andre.yong@outlook.com?subject=New Order&body=" + stuff+EncodeStuff()+name;
 	document.getElementById("submitorder").setAttribute("href", "mailto:" + emailAddress); 
 }
 function AddItem(item, special, yog)
